@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe сборка активного файла",
+			"command": "C:\\Compilers\\MinGW\\bin\\g++.exe",
+			"args": [
+				"-g",
+        "${file}",
+        "Pet.cpp",
+        "Player.cpp",
+        "Interface.cpp",
+				"Frame.cpp",
+        "Exception.cpp",
+				"Convert.cpp",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "компилятор: C:\\Compilers\\MinGW\\bin\\g++.exe"
+		}
+	]
+}
