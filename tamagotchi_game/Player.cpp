@@ -2,6 +2,7 @@
 #include "conio.h"      // for getch()
 #include "Player.h"
 #include "Exception.h"
+#include "Frame.h"
 
 
 namespace tamagotchi
@@ -30,6 +31,19 @@ namespace tamagotchi
   Pet* Player::get_pet()
   {
     return this->pet;
+  }
+
+
+
+  void Player::show_pet_list()
+  {
+    SingleFrame *frame = new SingleFrame;
+    frame->wrap_in_menu("Select your pet:\n"
+                        "1. Dog\n"
+                        "2. Cat");
+ 
+    delete frame;
+    return;
   }
 
 
@@ -66,41 +80,13 @@ namespace tamagotchi
 
   void Player::choose_action()
   {
-    switch(_getch())
+    try
     {
-      case '1':
-      {
-        system("cls");
-        this->pet->feed();
-        break;
-      }
-
-      case '2':
-      {
-        system("cls");
-        this->pet->play();
-        break;
-      }
-
-      case '3':
-      {
-        system("cls");
-        this->pet->sleep();
-        break;
-      }
-
-      case '0':
-      {
-        throw game_over();
-        break;
-      }
-
-      default:
-      {
-        system("cls");
-        std::cout << "Enter wrong key!" << std::endl;
-        break;
-      }
+      this->pet->choose_action();
+    }
+    catch(const game_over& ex)
+    {
+      std::cerr << ex.what() << std::endl;
     }
     return;
   }

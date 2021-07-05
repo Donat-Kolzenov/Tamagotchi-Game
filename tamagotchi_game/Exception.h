@@ -4,6 +4,7 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 #include "Pet.h"
+#include "Properties.h"
 
 //#define _SHOW_CREATE_OBJECTS
 //#define _SHOW_ERROR_LOGS
@@ -22,7 +23,7 @@ namespace tamagotchi
 
     public:
       virtual const char* what() const;
-      virtual void solution(Pet *pet) const;
+      virtual void solution(PetProperties *properties) const;
   };
 
 
@@ -35,8 +36,7 @@ namespace tamagotchi
 
     public:
       const char* what() const override;
-      void solution(Pet *pet) const override;
-      void solution(Dog *dog) const;
+      void solution(int &value) const;
   };
 
 
@@ -49,7 +49,7 @@ namespace tamagotchi
     
     public:
       const char* what() const override;
-      void solution(Pet *pet) const override;
+      void solution(PetProperties *properties) const;
   };
 
 
@@ -74,7 +74,7 @@ namespace tamagotchi
 
     public:
       const char* what() const override;
-      void solution(Pet *pet) const override;
+      void solution(PetProperties *properties) const;
   };
 }
 

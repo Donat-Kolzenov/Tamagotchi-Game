@@ -3,59 +3,22 @@
 
 #ifndef PET_H
 #define PET_H
+#include "Properties.h"
 
 
 namespace tamagotchi
 {
-  enum Value
-  {
-    MIN = 0,
-    MAX = 10,
-  };
-
-
-
-  enum Freq
-  {
-    LOW,
-    HIGH_FEED,
-    HIGH_PLAY,
-    HIGH_SLEEP
-  };
-
-
-
   class Pet
   {
     public:
       Pet();
-      ~Pet();
-
-    private:
-      bool sick;
-      int health;
-      int hunger;
-      int fatigue;
-      int freq;
+      virtual ~Pet();
 
     public:
-      int get_health();
-      int get_hunger();
-      int get_fatigue();
-      int get_freq();
-      bool is_sick();
-
-      void set_health(int health);
-      void set_hunger(int hunger);
-      void set_fatigue(int fatigue);
-      void set_freq(int freq);
-      void set_sick(bool sick);
-
-    public:
-      virtual void feed() = 0;
-      virtual void play() = 0;
-      virtual void sleep() = 0;
+      virtual bool is_healthy() = 0;
       virtual void show_properties() = 0;
+      virtual void show_actions() = 0;
+      virtual void choose_action() = 0;
   };
 
 
@@ -64,20 +27,22 @@ namespace tamagotchi
   {
     public:
       Dog();
-      ~Dog();
+      ~Dog() override;
 
     private:
-      int happiness;
+      DogProperties *properties;
+
+    private:
+      void feed();
+      void play();
+      void sleep();
+      void punish();
 
     public:
-      int get_happiness();
-      void set_happiness(int happiness);
-
-    public:
-      void feed() override;
-      void play() override;
-      void sleep() override;
+      bool is_healthy() override;
       void show_properties() override;
+      void show_actions() override;
+      void choose_action() override;
   };
 
 
@@ -86,13 +51,21 @@ namespace tamagotchi
   {
     public:
       Cat();
-      ~Cat();
+      ~Cat() override;
+
+    private:
+      CatProperties *properties;
+
+    private:
+      void feed();
+      void play();
+      void sleep();
 
     public:
-      void feed() override;
-      void play() override;
-      void sleep() override;
+      bool is_healthy() override;
       void show_properties() override;
+      void show_actions() override;
+      void choose_action() override;
   };
 }
 

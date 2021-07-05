@@ -23,9 +23,6 @@ namespace tamagotchi
 
     private:
       void welcome();
-      void show_menu();
-      void show_pet_list();
-      void show_properties();
       void game_over();
 
       void create_player();

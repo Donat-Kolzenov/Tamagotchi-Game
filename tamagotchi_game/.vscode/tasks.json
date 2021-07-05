@@ -9,6 +9,7 @@
 				"-g",
         "${file}",
         "Pet.cpp",
+				"Properties.cpp",
         "Player.cpp",
         "Interface.cpp",
 				"Frame.cpp",
