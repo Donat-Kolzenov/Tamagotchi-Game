@@ -3,7 +3,6 @@
 #include "Player.h"
 #include "Frame.h"
 #include "Exception.h"
-#include "Convert.h"
 
 
 namespace tamagotchi
@@ -33,55 +32,8 @@ namespace tamagotchi
   {
     DoubleFrame *frame = new DoubleFrame;
     frame->wrap_in_notice("Welcome to Tamagotchi Game!");
-
     delete frame;
-    return;
-  }
 
-
-
-  void Interface::show_menu()
-  {
-    SingleFrame *frame = new SingleFrame;
-    frame->wrap_in_menu("Select action:\n"
-                        "1. Feed\n"
-                        "2. Play\n"
-                        "3. Sleep\n"
-                        "0. Terminated");
-
-    delete frame;
-    return;
-  }
-
-
-
-  void Interface::show_pet_list()
-  {
-    SingleFrame *frame = new SingleFrame;
-    frame->wrap_in_menu("Select your pet:\n"
-                        "1. Dog\n"
-                        "2. Cat");
- 
-    delete frame;
-    return;
-  }
-
-
-
-  void Interface::show_properties()
-  {
-    Pet *pet = this->get_player()->get_pet();
-
-    std::string health =  myConvert::IntToString(pet->get_health());
-    std::string hunger =  myConvert::IntToString(pet->get_hunger());
-    std::string fatigue = myConvert::IntToString(pet->get_fatigue());
-    
-    DoubleFrame *frame = new DoubleFrame;
-    frame->wrap_in_properties("Health =  " + health + "\n"
-                              "Hunger =  " + hunger + "\n"
-                              "Fatigue = " + fatigue);
-
-    delete frame;
     return;
   }
 
@@ -91,8 +43,8 @@ namespace tamagotchi
   {
     DoubleFrame *frame = new DoubleFrame;
     frame->wrap_in_notice("GAME OVER");
-
     delete frame;
+
     return;  
   }
 
@@ -104,13 +56,13 @@ namespace tamagotchi
 
     this->create_player();
 
-    this->show_pet_list();
-    this->player->choose_pet();
+    player->show_pet_list();
+    player->choose_pet();
 
-    while(player->get_pet()->is_sick() == false)
+    while(player->get_pet()->is_healthy())
     {
       player->get_pet()->show_properties();
-      this->show_menu();
+      player->get_pet()->show_actions();
       player->choose_action();
     }
     this->game_over();
@@ -132,10 +84,17 @@ namespace tamagotchi
 
   Player* Interface::get_player()
   {
-    if(this->player == NULL)
-      throw player_error();
+    try
+    {
+      if(this->player == NULL)
+        throw player_error();
 
-    else
-      return this->player;
+      else
+        return this->player;
+    }
+    catch(const player_error& ex)
+    {
+      std::cerr << ex.what() << std::endl;
+    }
   }
 }

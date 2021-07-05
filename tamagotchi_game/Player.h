@@ -20,8 +20,10 @@ namespace tamagotchi
     public:
       Pet* get_pet();
       
+      void show_pet_list();
       void choose_pet();
       void choose_action();
+
   };
 }
 

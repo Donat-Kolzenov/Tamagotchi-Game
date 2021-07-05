@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Pet.h"
+#include "Properties.h"
 #include "Exception.h"
 
 
@@ -29,12 +30,10 @@ namespace tamagotchi
 
 
 
-  void exception::solution(Pet *pet) const
+  void exception::solution(PetProperties *properties) const
   {
-    pet->set_sick(true);
+    properties->set_healthy(false);
     std::cout << "Program was terminate..." << std::endl;
-    system("pause");
-
     return;
   }
 
@@ -61,27 +60,13 @@ namespace tamagotchi
 
 
 
-  void out_of_range::solution(Pet *pet) const
+  void out_of_range::solution(int &value) const
   {
-    if(pet->get_health() > MAX) { pet->set_health(MAX); }
-    if(pet->get_health() < MIN) { pet->set_health(MIN); }
+    if(value > MAX)
+      value = MAX;
 
-    if(pet->get_hunger() > MAX) { pet->set_hunger(MAX); }
-    if(pet->get_hunger() < MIN) { pet->set_hunger(MIN); }
-
-    if(pet->get_fatigue() > MAX) { pet->set_fatigue(MAX); }
-    if(pet->get_fatigue() < MIN) { pet->set_fatigue(MIN); }
-
-    return;
-  }
-
-
-
-  void out_of_range::solution(Dog *dog) const
-  {
-    this->solution((Pet*)dog);
-    if(dog->get_happiness() > MAX) { dog->set_happiness(MAX); }
-    if(dog->get_happiness() < MIN) { dog->set_happiness(MIN); }
+    if(value < MIN)
+      value = MIN;
 
     return;
   }
@@ -109,17 +94,17 @@ namespace tamagotchi
 
 
 
-  void overflow_error::solution(Pet *pet) const
+  void overflow_error::solution(PetProperties *properties) const
   {
-    int freq = pet->get_freq();
+    int freq = properties->get_freq();
 
     if(freq == HIGH_FEED || freq == HIGH_PLAY)
-      pet->set_health(pet->get_health() - 1);
+      properties->set_health(properties->get_health() - 1);
 
     if(freq == HIGH_SLEEP)
     {
-      pet->set_hunger(pet->get_hunger() - 1);
-      pet->set_health(pet->get_health() - 1);
+      properties->set_hunger(properties->get_hunger() - 1);
+      properties->set_health(properties->get_health() - 1);
     }
     return;
   }
@@ -170,8 +155,9 @@ namespace tamagotchi
 
 
 
-  void game_over::solution(Pet *pet) const
+  void game_over::solution(PetProperties *properties) const
   {
-    pet->set_sick(true);
+    properties->set_healthy(false);
+    return;
   }
 }
