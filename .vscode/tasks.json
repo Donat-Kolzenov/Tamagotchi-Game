@@ -23,7 +23,8 @@
 				"${workspaceFolder}/source/player/Player.cpp",
 				"${workspaceFolder}/source/tools/Convert.cpp",
         "-o",
-        "${workspaceFolder}/game/debug/Tamagotchi.exe"
+        "${workspaceFolder}/game/debug/Tamagotchi.exe",
+				"-static"
 			],
 			"options": {
 				"cwd": "${fileDirname}"

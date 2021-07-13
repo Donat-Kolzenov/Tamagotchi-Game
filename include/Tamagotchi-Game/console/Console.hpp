@@ -26,7 +26,7 @@ namespace tamagotchi
       enum DefaultSize  // in pixels
       {
         HEIGHT = 350,
-        WIDTH = 385
+        WIDTH = 395
       };
 
     public:

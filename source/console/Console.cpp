@@ -68,10 +68,10 @@ namespace tamagotchi
   void Console::show_game_rules()
   {
     CustomFrame *frame = new CustomFrame;
-    frame->wrap_in_menu("The game is played until your pet gets sick.\n"
-                        "By selecting a pet, you can perform certain\n"
-                        "actions above him that change his parameters.\n"
-                        "Monitor the health of your pet and then your\n"
+    frame->wrap_in_menu("The game is played until your pet gets sick. "
+                        "By selecting a pet, you can perform certain "
+                        "actions above him that change his parameters. "
+                        "Monitor the health of your pet and then your "
                         "pet will be in perfect order.");
     delete frame;
     return;

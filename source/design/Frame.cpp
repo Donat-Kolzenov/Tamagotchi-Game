@@ -10,6 +10,7 @@
 #define _COLOR_GREEN 10
 #define _PADDING_RIGHT 2         // default padding for correct display the frame in console
 #define _LEFT_BORDERLINE_SIZE 4  // default left borderline size for properties frame
+#define _MARGINS 2               // default margins in frame (left and right)
 
 
 namespace tamagotchi
@@ -60,12 +61,20 @@ namespace tamagotchi
     std::cout << this->line_up << std::endl;
     std::cout << null_str << " " << this->border << "\r" << this->border << " ";
     
-    for(int i = 0; i < menu_str.size(); i++)
+    int size_counter = 0;
+    for(int i = 0; i < (signed)menu_str.size(); i++)
     {
+      size_counter++;
       std::cout << menu_str[i];
 
-      if(menu_str[i] == '\n')
-          std::cout << null_str << " " << this->border << "\r" << this->border << " ";
+      if(menu_str[i] == '\n' || size_counter == this->horizontal_size - _MARGINS)
+      {
+        if(size_counter == this->horizontal_size - _MARGINS)
+            std::cout << std::endl;
+
+        std::cout << null_str << " " << this->border << "\r" << this->border << " ";
+        size_counter = 0;
+      }
     }
     std::cout << std::endl << this->line_down << std::endl;
     return;
@@ -80,17 +89,17 @@ namespace tamagotchi
     std::string notice_part;
 
     std::cout << this->line_up << std::endl;
-    for(int i = 0; i < notice_str.size(); i++)
+    for(int i = 0; i < (signed)notice_str.size(); i++)
     {
       if(notice_str[i] != '\n')
           notice_part += notice_str[i];
 
-      if(notice_str[i] == '\n' || i == notice_str.size() - 1)
+      if(notice_str[i] == '\n' || i == (signed)notice_str.size() - 1)
       {
         if(notice_str[i] == '\n')
             size = i - size;
 
-        if(i == notice_str.size() - 1)
+        if(i == (signed)notice_str.size() - 1)
             size = i - size + 1;
 
         int left_size = (this->horizontal_size - size) / 2;
@@ -130,7 +139,7 @@ namespace tamagotchi
         left_line += this->line;
       
     std::cout << this->line_up << std::endl;
-    for(int i = 0; i < properties_str.size(); i++)
+    for(int i = 0; i < (signed)properties_str.size(); i++)
     {
       if(properties_str[i] != '\n' && std::isdigit(properties_str[i]) == false)
           property += properties_str[i];
@@ -138,7 +147,7 @@ namespace tamagotchi
       if(std::isdigit(properties_str[i]))
           digit += properties_str[i];
 
-      if(properties_str[i] == '\n' || i == properties_str.size() - 1)
+      if(properties_str[i] == '\n' || i == (signed)properties_str.size() - 1)
       {
         for(int i = 0; i < atoi(digit.c_str()); i++)
             scale += "+";
@@ -148,7 +157,7 @@ namespace tamagotchi
           
         int right_size = this->horizontal_size - left_line.size() - property.size() - scale.size();
         std::string right_line;
-        for(int i = 0; i < right_size - 2; i++)
+        for(int i = 0; i < right_size - _MARGINS; i++)
             right_line += this->line;
 
         std::cout << this->border_left << left_line << " " << property;
