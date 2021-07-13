@@ -1,0 +1,38 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe сборка активного файла",
+			"command": "C:\\Compilers\\MinGW\\bin\\g++.exe",
+			"args": [
+				"-g",
+        "${file}",
+				"-I${workspaceFolder}/include/Tamagotchi-Game",
+				"-I${workspaceFolder}/include/Tamagotchi-Game/console",
+				"-I${workspaceFolder}/include/Tamagotchi-Game/design",
+				"-I${workspaceFolder}/include/Tamagotchi-Game/pet",
+				"-I${workspaceFolder}/include/Tamagotchi-Game/player",
+				"-I${workspaceFolder}/include/Tamagotchi-Game/tools",
+
+				"${workspaceFolder}/source/console/Console.cpp",
+				"${workspaceFolder}/source/design/Frame.cpp",
+				"${workspaceFolder}/source/pet/Pet.cpp",
+				"${workspaceFolder}/source/pet/PetProperties.cpp",
+				"${workspaceFolder}/source/pet/Exception.cpp",
+				"${workspaceFolder}/source/player/Player.cpp",
+				"${workspaceFolder}/source/tools/Convert.cpp",
+        "-o",
+        "${workspaceFolder}/game/debug/Tamagotchi.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "компилятор: C:\\Compilers\\MinGW\\bin\\g++.exe"
+		}
+	]
+}
