@@ -1,73 +1,25 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,vscode,c++,c
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,vscode,c++,c
 
-### C ###
+# Created by https://www.toptal.com/developers/gitignore/api/windows,c++
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,c++
+
+### C++ ###
 # Prerequisites
 *.d
 
-# Object files
+# Compiled Object files
+*.slo
+*.lo
 *.o
-*.ko
 *.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
 
 # Precompiled Headers
 *.gch
 *.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-### C++ ###
-# Prerequisites
-
-# Compiled Object files
-*.slo
-
-# Precompiled Headers
-
-# Linker files
-
-# Debugger Files
-
 # Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
 
 # Fortran module files
 *.mod
@@ -75,23 +27,13 @@ dkms.conf
 
 # Compiled Static libraries
 *.lai
+*.la
+*.a
+*.lib
 
 # Executables
-
-### VisualStudioCode ###
-.vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
-*.code-workspace
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
-
-### vscode ###
-!.vscode/settings.json
-!.vscode/extensions.json
+*.out
+*.app
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -119,4 +61,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,vscode,c++,c
+# End of https://www.toptal.com/developers/gitignore/api/windows,c++
